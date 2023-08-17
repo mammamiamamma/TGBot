@@ -1,1 +1,1 @@
-worker: java -jar TGPremiumBot.jar
+worker: java -jar out/artifacts/TGPremiumBot_jar/TGPremiumBot.jar

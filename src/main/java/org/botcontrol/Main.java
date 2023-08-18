@@ -9,7 +9,6 @@ public class Main {
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             Bot bot = new Bot();
-            bot.setMonths();
             telegramBotsApi.registerBot(bot);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);

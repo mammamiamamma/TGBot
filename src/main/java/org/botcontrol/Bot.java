@@ -2,7 +2,6 @@ package org.botcontrol;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove;
@@ -20,16 +19,25 @@ public class Bot extends TelegramLongPollingBot {
     private ReplyKeyboardMarkup rkm;
     private final long[] idList = new long[]{1547968115, 586833144};
 //    private final long[] idList = new long[]{1547968115};
+    public Bot(){
+        KeyboardRow kr1 = new KeyboardRow();
+        KeyboardRow kr2 = new KeyboardRow();
+        kr1.add(new KeyboardButton("3 months"));
+        kr1.add(new KeyboardButton("6 months"));
+        kr2.add(new KeyboardButton("12 months"));
+        List<KeyboardRow> list = new ArrayList<>();
+        list.add(kr1);
+        list.add(kr2);
+        rkm = new ReplyKeyboardMarkup();
+        rkm.setKeyboard(list);
+    }
     @Override
     public void onUpdateReceived(Update update){
-//        System.out.println(update.getMessage().getChatId());
-        SendMessage greetMsg = new SendMessage();
         if (update.hasMessage()) {
             if (update.getMessage().isCommand() && update.getMessage().getText().equals("/start")) {
-                Message message = update.getMessage();
-                long chatId = message.getChatId();
-                greetMsg.setChatId(chatId);
-                starterMessage(greetMsg);
+                SendMessage greetMsg = new SendMessage();
+                greetMsg.setChatId(update.getMessage().getChatId());
+                greetMsg.setText(setStarterMessage());
                 greetMsg.setReplyMarkup(rkm);
                 try {
                     execute(greetMsg);
@@ -144,8 +152,8 @@ public class Bot extends TelegramLongPollingBot {
         }
         return false;
     }
-    private void starterMessage(SendMessage sm){
-        sm.setText("""
+    private String setStarterMessage(){
+        return """
                 ⭐Добро пожаловать в TelegramPremiumBot, бот по покупке самого дешевого премиум на просторах телеграма!\s
 
                 ‼️Чтобы начать, выберите один из вариантов подписки внизу и нажмите на соответствующую кнопку.\s
@@ -153,7 +161,7 @@ public class Bot extends TelegramLongPollingBot {
                 \uD83D\uDCB2Цены:
                 • 3 месяца - 899₽
                 • 6 месяцев - 1299₽
-                • 12 месяцев - 1699₽""");
+                • 12 месяцев - 1699₽""";
     }
     enum SUBSCRIPTION_OPTION{
         MONTH3, MONTH6, MONTH12
@@ -215,21 +223,6 @@ public class Bot extends TelegramLongPollingBot {
             }
         }
         return null;
-    }
-    public void setMonths(){
-        KeyboardRow kr1 = new KeyboardRow();
-        KeyboardRow kr2 = new KeyboardRow();
-        KeyboardButton month1but = new KeyboardButton("3 months");
-        KeyboardButton month3but = new KeyboardButton("6 months");
-        KeyboardButton month12but = new KeyboardButton("12 months");
-        kr1.add(month1but);
-        kr1.add(month3but);
-        kr2.add(month12but);
-        List<KeyboardRow> list = new ArrayList<>();
-        list.add(kr1);
-        list.add(kr2);
-        rkm = new ReplyKeyboardMarkup();
-        rkm.setKeyboard(list);
     }
     @Override
     public String getBotToken(){

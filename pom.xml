@@ -42,7 +42,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.example.Main</mainClass>
+                            <mainClass>org.botcontrol.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

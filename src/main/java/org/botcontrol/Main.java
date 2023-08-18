@@ -1,4 +1,4 @@
-package org.example;
+package org.botcontrol;
 
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;

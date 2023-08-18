@@ -89,15 +89,11 @@ public class Bot extends TelegramLongPollingBot {
     private boolean isCorrectConnum(String text){
         if (!text.startsWith("/connum")) return false;
         if (text.length()!=19) return false;
-        String subtext = text.substring(8);
-        if(subtext.length()!=11) return false;
-        String pattern = "^\\d+$";
-        Pattern regexPattern = Pattern.compile(pattern);
-        Matcher matcher = regexPattern.matcher(subtext);
+        Pattern regexPattern = Pattern.compile("^\\d+$"); // Паттерн который проверяет, все ли символы в стринге - числа. Если нет, то хуйня полная(( плакать можно((
+        Matcher matcher = regexPattern.matcher(text.substring(8)); //Собсна сама проврека, которая в строке ниже вернет тру или фолс
         return matcher.matches();
     }
     private boolean isUsernameVisible(Update update){
-//    private boolean mammothAlert(Update update){
         SendMessage sm = new SendMessage();
         if (update.getMessage().getChat().getUserName() == null){
             sm.setText("""

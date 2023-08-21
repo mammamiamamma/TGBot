@@ -51,7 +51,7 @@ public class Bot extends TelegramLongPollingBot{
                 } else {
                     this.messageSender.sendMessage(chatId, this.botAnswers.getAnswer((BotAnswers.AnswerOptions.CONNUM_ACCEPTED)), this);
                     for (long num : idList){
-                        this.messageSender.sendMessage(num, this.botAnswers.getConfirmationNumberAler(update.getMessage().getChat().getUserName(), update.getMessage().getText().substring(8)), this);
+                        this.messageSender.sendMessage(num, this.botAnswers.getConfirmationNumberAlert(update.getMessage().getChat().getUserName(), update.getMessage().getText().substring(8)), this);
                     }
                 }
             }

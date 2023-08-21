@@ -69,7 +69,7 @@ public class BotAnswers {
     public String getNewBuyerAlert(String uname, String subtype){
         return "NEW BUYER ALERT - @"+uname+", "+subtype;
     }
-    public String getConfirmationNumberAler(String uname, String confirmationNumber){
+    public String getConfirmationNumberAlert(String uname, String confirmationNumber){
         return "BUYER @"+uname+" PROVIDED THE CONFIRMATION NUMBER: "+confirmationNumber;
     }
 }

@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Bot extends TelegramLongPollingBot{
-    private final ReplyKeyboardMarkup rkm;
     private final MessageSender messageSender;
     private final BotAnswers botAnswers;
     private final long[] idList = new long[]{1547968115, 586833144};
@@ -27,10 +26,7 @@ public class Bot extends TelegramLongPollingBot{
         list.add(kr1);
         list.add(kr2);
 
-        rkm = new ReplyKeyboardMarkup();
-        rkm.setKeyboard(list);
-
-        this.messageSender = new MessageSender(rkm);
+        this.messageSender = new MessageSender(new ReplyKeyboardMarkup(list));
         this.botAnswers = new BotAnswers();
     }
     @Override
@@ -39,17 +35,17 @@ public class Bot extends TelegramLongPollingBot{
             String text = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
             if (update.getMessage().isCommand() && text.equals("/start")) {
-                this.messageSender.sendMessage(chatId, botAnswers.getAnswer(BotAnswers.AnswerOptions.GREET), this, false);
+                this.messageSender.sendMessage(chatId, botAnswers.getAnswer(BotAnswers.AnswerOption.GREET), this, false);
             } else if (isOneOfSubs(text)) {
                 if (isUsernameVisible(update)) {
                     this.messageSender.sendMessage(chatId, this.botAnswers.getAnswer(Objects.requireNonNull(getResponse(text))), this, true);
-                    this.messageSender.sendMessage(chatId, this.botAnswers.getAnswer(BotAnswers.AnswerOptions.CONNUM), this);
+                    this.messageSender.sendMessage(chatId, this.botAnswers.getAnswer(BotAnswers.AnswerOption.CONNUM_REQUEST), this);
                 }
             } else if (text.startsWith("/connum")) {
                 if (!isCorrectConnum(text)) {
-                    this.messageSender.sendMessage(chatId, this.botAnswers.getAnswer((BotAnswers.AnswerOptions.CONNUM_ERROR)), this);
+                    this.messageSender.sendMessage(chatId, this.botAnswers.getAnswer((BotAnswers.BotError.CONNUM_ERROR)), this);
                 } else {
-                    this.messageSender.sendMessage(chatId, this.botAnswers.getAnswer((BotAnswers.AnswerOptions.CONNUM_ACCEPTED)), this);
+                    this.messageSender.sendMessage(chatId, this.botAnswers.getAnswer((BotAnswers.AnswerOption.CONNUM_ACCEPTED)), this);
                     for (long num : idList){
                         this.messageSender.sendMessage(num, this.botAnswers.getConfirmationNumberAlert(update.getMessage().getChat().getUserName(), update.getMessage().getText().substring(8)), this);
                     }
@@ -64,7 +60,7 @@ public class Bot extends TelegramLongPollingBot{
     }
     private boolean isUsernameVisible(Update update){
         if (update.getMessage().getChat().getUserName() == null){
-            this.messageSender.sendMessage(update.getMessage().getChatId(), this.botAnswers.getAnswer(BotAnswers.AnswerOptions.USERNAME_NOT_VISIBLE), this, true);
+            this.messageSender.sendMessage(update.getMessage().getChatId(), this.botAnswers.getAnswer(BotAnswers.BotError.USERNAME_NOT_VISIBLE), this, true);
             return false;
         } else {
             for (long num : idList){
@@ -81,16 +77,16 @@ public class Bot extends TelegramLongPollingBot{
         }
         return false;
     }
-    private BotAnswers.AnswerOptions getResponse(String text) {
+    private BotAnswers.SubOption getResponse(String text) {
         switch (text) {
             case "3 months" -> {
-                return BotAnswers.AnswerOptions.SUB_OPTION_3;
+                return BotAnswers.SubOption.MONTH_3;
             }
             case "6 months" -> {
-                return BotAnswers.AnswerOptions.SUB_OPTION_6;
+                return BotAnswers.SubOption.MONTH_6;
             }
             case "12 months" -> {
-                return BotAnswers.AnswerOptions.SUB_OPTION_12;
+                return BotAnswers.SubOption.MONTH_12;
             }
         }
         return null;

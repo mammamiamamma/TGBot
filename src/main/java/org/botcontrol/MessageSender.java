@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRem
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class MessageSender {
-    private SendMessage sendMessage;
+    private final SendMessage sendMessage;
     private ReplyKeyboardMarkup rkm;
     public MessageSender(ReplyKeyboardMarkup rkm){
         this.sendMessage = new SendMessage();

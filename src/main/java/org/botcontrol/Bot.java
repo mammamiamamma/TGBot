@@ -77,21 +77,21 @@ public class Bot extends TelegramLongPollingBot{
             return true;
         }
     }
-    @Override
-    public String getBotToken(){
-        return "6338938278:AAHElr41WuSQgFqBD5rskIcXB6fN6xhtedo"; // БОТ ДЛЯ ТЕСТА НОВЫХ ФУНКЦИЙ ТИПА)
-    }
 //    @Override
 //    public String getBotToken(){
-//        return "6486739146:AAG0Cd-MoQXq9DLtMVIpy3xD1DjZ9pUaw1I"; // ТГ ПРЕМИУМ БОТ
+//        return "6338938278:AAHElr41WuSQgFqBD5rskIcXB6fN6xhtedo"; // БОТ ДЛЯ ТЕСТА НОВЫХ ФУНКЦИЙ ТИПА)
 //    }
-
     @Override
-    public String getBotUsername() {
-        return "testerNoFunctionsBot"; // БОТ ДЛЯ ТЕСТА
+    public String getBotToken(){
+        return "6486739146:AAG0Cd-MoQXq9DLtMVIpy3xD1DjZ9pUaw1I"; // ТГ ПРЕМИУМ БОТ
     }
+
 //    @Override
 //    public String getBotUsername() {
-//        return "cheaptgprem_bot"; // ТГ ПРЕМИУМ БОТ
+//        return "testerNoFunctionsBot"; // БОТ ДЛЯ ТЕСТА
 //    }
+    @Override
+    public String getBotUsername() {
+        return "cheaptgprem_bot"; // ТГ ПРЕМИУМ БОТ
+    }
 }

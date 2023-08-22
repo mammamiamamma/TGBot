@@ -14,7 +14,7 @@ public class InlineKeyboardController {
 
     public InlineKeyboardController(){
         InlineKeyboardButton mainMenuButton = new InlineKeyboardButton();
-        mainMenuButton.setText("Главное меню");
+        mainMenuButton.setText("\uD83C\uDFE0Главное меню");
         mainMenuButton.setCallbackData("main_menu");
         List<InlineKeyboardButton> mainMenuRow = new ArrayList<>();
         mainMenuRow.add(mainMenuButton);
@@ -26,13 +26,13 @@ public class InlineKeyboardController {
     }
     private void setSubscriptionOptions(){
         InlineKeyboardButton MONTH_3_BUTTON = new InlineKeyboardButton();
-        MONTH_3_BUTTON.setText("3 months");
+        MONTH_3_BUTTON.setText("3 месяца\uD83D\uDD25");
         MONTH_3_BUTTON.setCallbackData("month_3");
         InlineKeyboardButton MONTH_6_BUTTON = new InlineKeyboardButton();
-        MONTH_6_BUTTON.setText("6 months");
+        MONTH_6_BUTTON.setText("6 месяцев\uD83D\uDD25\uD83D\uDD25");
         MONTH_6_BUTTON.setCallbackData("month_6");
         InlineKeyboardButton MONTH_12_BUTTON = new InlineKeyboardButton();
-        MONTH_12_BUTTON.setText("12 months");
+        MONTH_12_BUTTON.setText("12 месяцев\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
         MONTH_12_BUTTON.setCallbackData("month_12");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
         List<InlineKeyboardButton> subRow2 = new ArrayList<>();
@@ -49,10 +49,10 @@ public class InlineKeyboardController {
     }
     private void setPaymentOptions(List<InlineKeyboardButton> menuRow){
         InlineKeyboardButton CARD_BUTTON = new InlineKeyboardButton();
-        CARD_BUTTON.setText("Тинькофф / Карта");
+        CARD_BUTTON.setText("\uD83D\uDCB3Тинькофф / Карта");
         CARD_BUTTON.setCallbackData("tink_card");
         InlineKeyboardButton TINKOFF_BUTTON = new InlineKeyboardButton();
-        TINKOFF_BUTTON.setText("Тинькофф / Номер телефона");
+        TINKOFF_BUTTON.setText("\uD83D\uDCDFТинькофф / Номер телефона");
         TINKOFF_BUTTON.setCallbackData("tink_number");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
         List<InlineKeyboardButton> subRow2 = new ArrayList<>();
@@ -68,7 +68,7 @@ public class InlineKeyboardController {
     }
     private void setPaymentInitiation(List<InlineKeyboardButton> menuRow){
         InlineKeyboardButton CONFIRM_BUTTON = new InlineKeyboardButton();
-        CONFIRM_BUTTON.setText("Подтвердить оплату");
+        CONFIRM_BUTTON.setText("✔️Подтвердить оплату✔️");
         CONFIRM_BUTTON.setCallbackData("payment_confirmed");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
         subRow1.add(CONFIRM_BUTTON);

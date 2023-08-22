@@ -4,6 +4,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class Bot extends TelegramLongPollingBot{
+    //new artifact version
     private final MessageSender messageSender;
     private final BotAnswers botAnswers;
     private final InlineKeyboardController inlineKeyboardController;

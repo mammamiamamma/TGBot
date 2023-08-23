@@ -9,7 +9,7 @@ import java.util.List;
 public class InlineKeyboardController {
     private InlineKeyboardMarkup subscriptionOptions;
     private InlineKeyboardMarkup paymentOptions;
-    private InlineKeyboardMarkup mainMenuMarkup;
+    private final InlineKeyboardMarkup mainMenuMarkup;
     private InlineKeyboardMarkup paymentInitiation;
 
     public InlineKeyboardController(){
@@ -25,15 +25,9 @@ public class InlineKeyboardController {
         setPaymentInitiation(mainMenuRow);
     }
     private void setSubscriptionOptions(){
-        InlineKeyboardButton MONTH_3_BUTTON = new InlineKeyboardButton();
-        MONTH_3_BUTTON.setText("3 месяца\uD83D\uDD25");
-        MONTH_3_BUTTON.setCallbackData("month_3");
-        InlineKeyboardButton MONTH_6_BUTTON = new InlineKeyboardButton();
-        MONTH_6_BUTTON.setText("6 месяцев\uD83D\uDD25\uD83D\uDD25");
-        MONTH_6_BUTTON.setCallbackData("month_6");
-        InlineKeyboardButton MONTH_12_BUTTON = new InlineKeyboardButton();
-        MONTH_12_BUTTON.setText("12 месяцев\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25");
-        MONTH_12_BUTTON.setCallbackData("month_12");
+        InlineKeyboardButton MONTH_3_BUTTON = createInlineButton("3 месяца\uD83D\uDD25", "month_3");
+        InlineKeyboardButton MONTH_6_BUTTON = createInlineButton("6 месяцев\uD83D\uDD25\uD83D\uDD25", "month_6");
+        InlineKeyboardButton MONTH_12_BUTTON = createInlineButton("12 месяцев\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25", "month_12");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
         List<InlineKeyboardButton> subRow2 = new ArrayList<>();
         List<InlineKeyboardButton> subRow3 = new ArrayList<>();
@@ -48,12 +42,8 @@ public class InlineKeyboardController {
         subscriptionOptions = new InlineKeyboardMarkup(subRows);
     }
     private void setPaymentOptions(List<InlineKeyboardButton> menuRow){
-        InlineKeyboardButton CARD_BUTTON = new InlineKeyboardButton();
-        CARD_BUTTON.setText("\uD83D\uDCB3Тинькофф / Карта");
-        CARD_BUTTON.setCallbackData("tink_card");
-        InlineKeyboardButton TINKOFF_BUTTON = new InlineKeyboardButton();
-        TINKOFF_BUTTON.setText("\uD83D\uDCDFТинькофф / Номер телефона");
-        TINKOFF_BUTTON.setCallbackData("tink_number");
+        InlineKeyboardButton CARD_BUTTON = createInlineButton("\uD83D\uDCB3Тинькофф / Карта", "tink_card");
+        InlineKeyboardButton TINKOFF_BUTTON = createInlineButton("\uD83D\uDCDFТинькофф / Номер телефона", "tink_number");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
         List<InlineKeyboardButton> subRow2 = new ArrayList<>();
         subRow1.add(CARD_BUTTON);
@@ -67,9 +57,7 @@ public class InlineKeyboardController {
         paymentOptions = new InlineKeyboardMarkup(subRows);
     }
     private void setPaymentInitiation(List<InlineKeyboardButton> menuRow){
-        InlineKeyboardButton CONFIRM_BUTTON = new InlineKeyboardButton();
-        CONFIRM_BUTTON.setText("✔️Подтвердить оплату✔️");
-        CONFIRM_BUTTON.setCallbackData("payment_confirmed");
+        InlineKeyboardButton CONFIRM_BUTTON = createInlineButton("✔️Подтвердить оплату✔️", "payment_confirmed");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
         subRow1.add(CONFIRM_BUTTON);
         List<List<InlineKeyboardButton>> subRows = new ArrayList<>();
@@ -79,18 +67,21 @@ public class InlineKeyboardController {
 
         paymentInitiation = new InlineKeyboardMarkup(subRows);
     }
-
+    private InlineKeyboardButton createInlineButton(String text, String callbackData){
+        InlineKeyboardButton button = new InlineKeyboardButton();
+        button.setText(text);
+        button.setCallbackData(callbackData);
+        return button;
+    }
     public InlineKeyboardMarkup getPaymentOptions() {
         return paymentOptions;
     }
-
     public InlineKeyboardMarkup getSubscriptionOptions() {
         return subscriptionOptions;
     }
     public InlineKeyboardMarkup getPaymentInitiation(){
         return paymentInitiation;
     }
-
     public InlineKeyboardMarkup getMainMenuMarkup() {
         return mainMenuMarkup;
     }

@@ -7,9 +7,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRem
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class MessageSender {
-    private final SendMessage sendMessage;
+//    private final SendMessage sendMessage;
     public MessageSender(){
-        this.sendMessage = new SendMessage();
+//        this.sendMessage = new SendMessage();
     }
 //    public void sendMessage(long chatId, String text, Bot bot) {
 //        this.sendMessage.setChatId(chatId);
@@ -20,10 +20,11 @@ public class MessageSender {
 //            throw new RuntimeException(e);
 //        }
 //    } //Общий метод для отправления сообщений пользователю
-    public void sendMessage(long chatId, String text, Bot bot, boolean hideKeyboard) {
-        this.sendMessage.setChatId(chatId);
-        this.sendMessage.setText(text);
-        this.sendMessage.setReplyMarkup(new ReplyKeyboardRemove(true, false));
+    public void sendMessage(long chatId, String text, Bot bot) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(text);
+        sendMessage.setReplyMarkup(new ReplyKeyboardRemove(true, false));
         try {
             bot.execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -31,9 +32,10 @@ public class MessageSender {
         } //Метод если надо открыть или спрятать клавиатуру
     }
     public void sendMessageWithSubKeyboard(long chatId, String text, Bot bot, InlineKeyboardMarkup subKeyboard) {
-        this.sendMessage.setChatId(chatId);
-        this.sendMessage.setText(text);
-        this.sendMessage.setReplyMarkup(subKeyboard);
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(text);
+        sendMessage.setReplyMarkup(subKeyboard);
         try {
             bot.execute(sendMessage);
         } catch (TelegramApiException e) {

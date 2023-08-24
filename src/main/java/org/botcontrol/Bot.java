@@ -19,7 +19,7 @@ public class Bot extends TelegramLongPollingBot{
     }
     @Override
     public void onUpdateReceived(Update update){
-        if (update.hasMessage() && update.getMessage().getText().equals("/start")){
+        if (update.hasMessage() && update.getMessage().getText().equals("/start")) {
             this.messageSender.sendMessageWithSubKeyboard(update.getMessage().getChatId(), this.botAnswers.getAnswer(BotAnswers.AnswerOption.GREET), this, inlineKeyboardController.getSubscriptionOptions());
             sendToBosses(update);
         } else if (update.hasCallbackQuery()) {
@@ -30,7 +30,7 @@ public class Bot extends TelegramLongPollingBot{
             if (isUsernameVisible(update)) {
                 switch (query) {
                     case "main_menu" -> {
-                        this.botAnswers.setMessage("");
+                        this.botAnswers.setMessage(null);
                         this.messageEditor.editMessage(chatId, messageId, this.botAnswers.getAnswer(BotAnswers.AnswerOption.GREET), this, this.inlineKeyboardController.getSubscriptionOptions());
                     }
                     case "month_3" -> {
@@ -55,7 +55,7 @@ public class Bot extends TelegramLongPollingBot{
                     }
                     case "payment_confirmed" -> {
                         for (long num : idList) {
-                            this.messageSender.sendMessage(num, this.botAnswers.getConfirmationNumberAlert(update.getCallbackQuery().getMessage().getChat().getUserName()), this, true);
+                            this.messageSender.sendMessage(num, this.botAnswers.getConfirmationNumberAlert(update.getCallbackQuery().getMessage().getChat().getUserName()), this);
                         }
                         this.messageEditor.editMessage(chatId, messageId, "Спасибо за подтверждение оплаты, админ вскоре с вами свяжется для отправления подписки", this, this.inlineKeyboardController.getMainMenuMarkup());
                     }
@@ -66,7 +66,7 @@ public class Bot extends TelegramLongPollingBot{
     private void sendToBosses(Update update){
         if (update.getMessage().getChat().getUserName()!=null){
             for (long num : idList){
-                this.messageSender.sendMessage(num, this.botAnswers.getNewBuyerAlert(update.getMessage().getChat().getUserName()), this, true);
+                this.messageSender.sendMessage(num, this.botAnswers.getNewBuyerAlert(update.getMessage().getChat().getUserName()), this);
             }
         }
     }
@@ -78,21 +78,21 @@ public class Bot extends TelegramLongPollingBot{
             return true;
         }
     }
-//    @Override
-//    public String getBotToken(){
-//        return "6338938278:AAHElr41WuSQgFqBD5rskIcXB6fN6xhtedo"; // БОТ ДЛЯ ТЕСТА НОВЫХ ФУНКЦИЙ ТИПА)
-//    }
     @Override
     public String getBotToken(){
-        return "6486739146:AAG0Cd-MoQXq9DLtMVIpy3xD1DjZ9pUaw1I"; // ТГ ПРЕМИУМ БОТ
+        return "6338938278:AAHElr41WuSQgFqBD5rskIcXB6fN6xhtedo"; // БОТ ДЛЯ ТЕСТА НОВЫХ ФУНКЦИЙ ТИПА)
     }
-
 //    @Override
-//    public String getBotUsername() {
-//        return "testerNoFunctionsBot"; // БОТ ДЛЯ ТЕСТА
+//    public String getBotToken(){
+//        return "6486739146:AAG0Cd-MoQXq9DLtMVIpy3xD1DjZ9pUaw1I"; // ТГ ПРЕМИУМ БОТ
 //    }
+
     @Override
     public String getBotUsername() {
-        return "cheaptgprem_bot"; // ТГ ПРЕМИУМ БОТ
+        return "testerNoFunctionsBot"; // БОТ ДЛЯ ТЕСТА
     }
+//    @Override
+//    public String getBotUsername() {
+//        return "cheaptgprem_bot"; // ТГ ПРЕМИУМ БОТ
+//    }
 }

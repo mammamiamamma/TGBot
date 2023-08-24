@@ -7,10 +7,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 //import static java.lang.Math.toIntExact;
 
 public class MessageEditor {
-//    private final EditMessageText edm;
-    public MessageEditor(){
-//        this.edm = new EditMessageText();
-    }
     public void editMessage(long chatId, long messageId, String text, Bot bot, InlineKeyboardMarkup ikm){
         EditMessageText edm = new EditMessageText();
         edm.setText(text);

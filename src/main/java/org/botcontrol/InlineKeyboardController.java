@@ -7,24 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InlineKeyboardController {
-    private InlineKeyboardMarkup subscriptionOptions;
-    private InlineKeyboardMarkup paymentOptions;
+    private final InlineKeyboardMarkup subscriptionOptions;
+    private final InlineKeyboardMarkup paymentOptions;
     private final InlineKeyboardMarkup mainMenuMarkup;
-    private InlineKeyboardMarkup paymentInitiation;
+    private final InlineKeyboardMarkup paymentInitiation;
 
     public InlineKeyboardController(){
-        InlineKeyboardButton mainMenuButton = new InlineKeyboardButton();
-        mainMenuButton.setText("\uD83C\uDFE0Главное меню");
-        mainMenuButton.setCallbackData("main_menu");
+        InlineKeyboardButton mainMenuButton = createInlineButton("\uD83C\uDFE0Главное меню", "main_menu");
         List<InlineKeyboardButton> mainMenuRow = new ArrayList<>();
         mainMenuRow.add(mainMenuButton);
 
-        mainMenuMarkup = new InlineKeyboardMarkup(List.of(mainMenuRow));
-        setSubscriptionOptions();
-        setPaymentOptions(mainMenuRow);
-        setPaymentInitiation(mainMenuRow);
+        mainMenuMarkup = new InlineKeyboardMarkup(List.of(List.of(mainMenuButton)));
+        subscriptionOptions = setSubscriptionOptions();
+        paymentOptions = setPaymentOptions(mainMenuRow);
+        paymentInitiation = setPaymentInitiation(mainMenuRow);
     }
-    private void setSubscriptionOptions(){
+    private InlineKeyboardMarkup setSubscriptionOptions(){
         InlineKeyboardButton MONTH_3_BUTTON = createInlineButton("3 месяца\uD83D\uDD25", "month_3");
         InlineKeyboardButton MONTH_6_BUTTON = createInlineButton("6 месяцев\uD83D\uDD25\uD83D\uDD25", "month_6");
         InlineKeyboardButton MONTH_12_BUTTON = createInlineButton("12 месяцев\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25", "month_12");
@@ -39,9 +37,9 @@ public class InlineKeyboardController {
         subRows.add(subRow2);
         subRows.add(subRow3);
 
-        subscriptionOptions = new InlineKeyboardMarkup(subRows);
+        return new InlineKeyboardMarkup(subRows);
     }
-    private void setPaymentOptions(List<InlineKeyboardButton> menuRow){
+    private InlineKeyboardMarkup setPaymentOptions(List<InlineKeyboardButton> menuRow){
         InlineKeyboardButton CARD_BUTTON = createInlineButton("\uD83D\uDCB3Тинькофф / Карта", "tink_card");
         InlineKeyboardButton TINKOFF_BUTTON = createInlineButton("\uD83D\uDCDFТинькофф / Номер телефона", "tink_number");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
@@ -54,9 +52,9 @@ public class InlineKeyboardController {
 
         subRows.add(menuRow);
 
-        paymentOptions = new InlineKeyboardMarkup(subRows);
+        return new InlineKeyboardMarkup(subRows);
     }
-    private void setPaymentInitiation(List<InlineKeyboardButton> menuRow){
+    private InlineKeyboardMarkup setPaymentInitiation(List<InlineKeyboardButton> menuRow){
         InlineKeyboardButton CONFIRM_BUTTON = createInlineButton("✔️Подтвердить оплату✔️", "payment_confirmed");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
         subRow1.add(CONFIRM_BUTTON);
@@ -65,7 +63,7 @@ public class InlineKeyboardController {
 
         subRows.add(menuRow);
 
-        paymentInitiation = new InlineKeyboardMarkup(subRows);
+        return new InlineKeyboardMarkup(subRows);
     }
     private InlineKeyboardButton createInlineButton(String text, String callbackData){
         InlineKeyboardButton button = new InlineKeyboardButton();

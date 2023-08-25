@@ -40,8 +40,8 @@ public class InlineKeyboardController {
         return new InlineKeyboardMarkup(subRows);
     }
     private InlineKeyboardMarkup setPaymentOptions(List<InlineKeyboardButton> menuRow){
-        InlineKeyboardButton CARD_BUTTON = createInlineButton("\uD83D\uDCB3Тинькофф / Карта", "tink_card");
-        InlineKeyboardButton TINKOFF_BUTTON = createInlineButton("\uD83D\uDCDFТинькофф / Номер телефона", "tink_number");
+        InlineKeyboardButton CARD_BUTTON = createInlineButton("\uD83D\uDCB3Карта", "tink_card");
+        InlineKeyboardButton TINKOFF_BUTTON = createInlineButton("\uD83D\uDCDFТинькофф", "tink_number");
         List<InlineKeyboardButton> subRow1 = new ArrayList<>();
         List<InlineKeyboardButton> subRow2 = new ArrayList<>();
         subRow1.add(CARD_BUTTON);

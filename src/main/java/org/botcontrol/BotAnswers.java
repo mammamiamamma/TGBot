@@ -31,10 +31,10 @@ public class BotAnswers {
     public String enumsToString(PaymentOption option){
         switch (option){
             case CARD -> {
-                return "TINKOFF/Карта";
+                return "Карта";
             }
             case TINKOFF -> {
-                return "TINKOFF/Телефон";
+                return "TINKOFF";
             }
         }
         return null;

@@ -68,19 +68,19 @@ public class BotAnswers {
         return null;
     }
     public String getNewBuyerAlert(String uname){
-        return "Пользователь @"+uname+" нажал на кнопку 'БАБЛО'";
+        return "Пользователь @"+uname+" запустил бота'";
     }
     public String getConfirmationNumberAlert(String uname){
-        return "Пользователь @"+uname+" подтвердил оплату (сам, мож наебал)";
+        return "Пользователь @"+uname+" подтвердил оплату";
     }
     public String getMessage(){
         return message;
     }
     private String getTinkCardNumber() {
-        return "2200 7008 9386 4917";
+        return "2200 **** **** ****"; //removed details
     }
     private String getTinkPhoneNumber() {
-        return "+79786436201";
+        return "+*******";
     }
     private String getPrice_3months(){
         return "899";
@@ -92,7 +92,7 @@ public class BotAnswers {
         return "1699";
     }
     private String getAdminName(){
-        return "@Kanjomanjo";
+        return "";
     }
     public void setMessage(String msg){
         message = msg;

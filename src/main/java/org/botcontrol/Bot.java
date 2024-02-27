@@ -9,8 +9,8 @@ public class Bot extends TelegramLongPollingBot{
     private final BotAnswers botAnswers;
     private final InlineKeyboardController inlineKeyboardController;
     private final MessageEditor messageEditor;
-    private final long[] idList = new long[]{1547968115, 586833144};
-//    private final long[] idList = new long[]{1547968115};
+    private final long[] idList = new long[]{222, 111}; //ids to send information about new clients to (taken out for security reasons)
+//    private final long[] idList = new long[]{111};
     public Bot(){
         this.messageSender = new MessageSender();
         this.botAnswers = new BotAnswers();
@@ -78,19 +78,19 @@ public class Bot extends TelegramLongPollingBot{
     }
 //    @Override
 //    public String getBotToken(){
-//        return "6338938278:AAHElr41WuSQgFqBD5rskIcXB6fN6xhtedo"; // БОТ ДЛЯ ТЕСТА НОВЫХ ФУНКЦИЙ ТИПА)
+//        return ""; // Secondary bot for testing new features.
 //    }
     @Override
     public String getBotToken(){
-        return "6486739146:AAG0Cd-MoQXq9DLtMVIpy3xD1DjZ9pUaw1I"; // ТГ ПРЕМИУМ БОТ
+        return ""; // the original (the tokens are taken out for security reasons)
     }
 
 //    @Override
 //    public String getBotUsername() {
-//        return "testerNoFunctionsBot"; // БОТ ДЛЯ ТЕСТА
+//        return "testerNoFunctionsBot";
 //    }
     @Override
     public String getBotUsername() {
-        return "cheaptgprem_bot"; // ТГ ПРЕМИУМ БОТ
+        return "cheaptgprem_bot";
     }
 }
